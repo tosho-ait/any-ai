@@ -34,12 +34,9 @@ export default function VideoPage() {
     const onSubmit = async (values) => {
         try {
             setVideo(undefined);
-
             const response = await axios.post("/api/videogen", values);
             setVideo(response.data[0]);
-
             form.reset();
-
         } catch (e) {
             if (e?.response?.status === 403) {
                 proModal.onOpen();

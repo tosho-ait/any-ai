@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 import {Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle} from "./ui/dialog";
 import {useProModal} from "../hooks/use-pro-model";
 import {Badge} from "./ui/badge";
@@ -58,7 +60,7 @@ export const ProModal = () => {
             const response = await axios.get("/api/stripe");
             window.location.href = response.data.url;
         } catch (e) {
-            console.log(e)
+            toast.error("Something went wrong!")
         } finally {
             setLoading(true);
         }
@@ -75,11 +77,9 @@ export const ProModal = () => {
                         </div>
                     </DialogTitle>
                     <DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium">
-
                         {tools.map(tool => <Card
                             key={tool.label}
-                            className="p-3 border-black/5 flex items-center justify-between"
-                        >
+                            className="p-3 border-black/5 flex items-center justify-between">
                             <div className="flex items-center gap-x-4">
                                 <div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
                                     <tool.icon className={cn("w-6 h-6", tool.color)}/>
@@ -96,6 +96,7 @@ export const ProModal = () => {
                     <Button size="lg"
                             variant="premium"
                             className="w-full"
+                            disabled={loading}
                             onClick={onSubscribe}>
                         Upgrade<Zap className="w-4 h-4 ml-2 fill-white"/></Button>
                 </DialogFooter>

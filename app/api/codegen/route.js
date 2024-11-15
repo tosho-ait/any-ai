@@ -9,7 +9,7 @@ const openai = new OpenAI();
 
 const instructionMessage = {
     role: "system",
-    content: "You aer a code generator."
+    content: "You are a code generator."
     // content: "You aer a code generator. You must answer only in markdown code snippets. Use code comments for explanations.You must answer only in markdown code snippets. Use code comments for explanations."
 }
 

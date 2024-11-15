@@ -3,6 +3,7 @@
 import Heading from "../../../../components/heading";
 import {Download, ImageIcon} from "lucide-react";
 import {useForm} from "react-hook-form";
+import toast from "react-hot-toast";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {amountOptions, formSchema, resolutionOptions} from "./constants";
 
@@ -51,6 +52,8 @@ export default function ConversationPage() {
         } catch (e) {
             if (e?.response?.status === 403) {
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong!")
             }
             console.log(e);
         } finally {

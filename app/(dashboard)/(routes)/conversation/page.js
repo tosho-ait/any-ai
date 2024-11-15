@@ -1,9 +1,9 @@
 "use client";
 
-import * as z from "zod";
 import Heading from "../../../../components/heading";
 import {MessageSquare} from "lucide-react";
 import {useForm} from "react-hook-form";
+import toast from "react-hot-toast";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {formSchema} from "./constants";
 
@@ -48,6 +48,8 @@ export default function ConversationPage() {
         } catch (e) {
             if (e?.response?.status === 403) {
                 proModal.onOpen();
+            } else {
+                toast.error("Something went wrong!")
             }
             console.log(e);
         } finally {
